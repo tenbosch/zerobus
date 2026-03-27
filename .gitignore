@@ -3,3 +3,7 @@
 __pycache__/
 *.pyc
 .ai-dev-kit/
+.claude/
+.github/skills/
+.mcp.json
+.vscode/
