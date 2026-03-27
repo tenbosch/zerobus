@@ -8,6 +8,10 @@ Install dependencies:
 Create a .env file in the same directory with:
     DATABRICKS_CLIENT_ID=your-service-principal-client-id
     DATABRICKS_CLIENT_SECRET=your-service-principal-client-secret
+    ZEROBUS_SERVER_ENDPOINT=your-zerobus-grpc-endpoint-hostname
+    DATABRICKS_WORKSPACE_URL=https://your-workspace.cloud.databricks.com
+    DATABRICKS_TABLE_NAME=catalog.schema.table
+    COLLECTION_INTERVAL_SECONDS=1
 """
 
 import datetime
