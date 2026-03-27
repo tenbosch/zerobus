@@ -20,16 +20,20 @@ Create a `.env` file in the project root:
 ```
 DATABRICKS_CLIENT_ID=your-service-principal-client-id
 DATABRICKS_CLIENT_SECRET=your-service-principal-client-secret
+ZEROBUS_SERVER_ENDPOINT=your-zerobus-grpc-endpoint-hostname
+DATABRICKS_WORKSPACE_URL=https://your-workspace.cloud.databricks.com
+DATABRICKS_TABLE_NAME=catalog.schema.table
+COLLECTION_INTERVAL_SECONDS=1
 ```
 
-Edit the configuration constants at the top of `main.py`:
-
-| Constant | Description |
-|---|---|
-| `SERVER_ENDPOINT` | Zerobus gRPC endpoint hostname |
-| `WORKSPACE_URL` | Databricks workspace URL |
-| `TABLE_NAME` | Unity Catalog target table (`catalog.schema.table`) |
-| `COLLECTION_INTERVAL_SECONDS` | Sampling frequency (default: `1`) |
+| Variable | Required | Description |
+|---|---|---|
+| `DATABRICKS_CLIENT_ID` | Yes | Service principal client ID |
+| `DATABRICKS_CLIENT_SECRET` | Yes | Service principal client secret |
+| `ZEROBUS_SERVER_ENDPOINT` | Yes | Zerobus gRPC endpoint hostname |
+| `DATABRICKS_WORKSPACE_URL` | Yes | Databricks workspace URL |
+| `DATABRICKS_TABLE_NAME` | Yes | Unity Catalog target table (`catalog.schema.table`) |
+| `COLLECTION_INTERVAL_SECONDS` | No | Sampling frequency in seconds (default: `1`) |
 
 ## Usage
 

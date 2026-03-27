@@ -21,19 +21,24 @@ from dotenv import load_dotenv
 from zerobus.sdk.sync import ZerobusSdk
 from zerobus.sdk.shared import RecordType, StreamConfigurationOptions, TableProperties
 
-# ─── Load credentials from .env ───────────────────────────────────────────────
+# ─── Load configuration from .env ─────────────────────────────────────────────
 load_dotenv()
 CLIENT_ID     = os.getenv("DATABRICKS_CLIENT_ID")
 CLIENT_SECRET = os.getenv("DATABRICKS_CLIENT_SECRET")
+SERVER_ENDPOINT = os.getenv("ZEROBUS_SERVER_ENDPOINT")
+WORKSPACE_URL   = os.getenv("DATABRICKS_WORKSPACE_URL")
+TABLE_NAME      = os.getenv("DATABRICKS_TABLE_NAME")
+COLLECTION_INTERVAL_SECONDS = int(os.getenv("COLLECTION_INTERVAL_SECONDS", "1"))
 
-if not CLIENT_ID or not CLIENT_SECRET:
-    raise ValueError("Missing DATABRICKS_CLIENT_ID or DATABRICKS_CLIENT_SECRET in .env file")
-
-# ─── Configuration ────────────────────────────────────────────────────────────
-SERVER_ENDPOINT = "2963015973516357.zerobus.us-east-1.cloud.databricks.com"
-WORKSPACE_URL   = "https://dbc-7ba6d890-2ab3.cloud.databricks.com"
-TABLE_NAME      = "zerobus_catalog.pc_data.pc_metrics"
-COLLECTION_INTERVAL_SECONDS = 1
+missing = [k for k, v in {
+    "DATABRICKS_CLIENT_ID": CLIENT_ID,
+    "DATABRICKS_CLIENT_SECRET": CLIENT_SECRET,
+    "ZEROBUS_SERVER_ENDPOINT": SERVER_ENDPOINT,
+    "DATABRICKS_WORKSPACE_URL": WORKSPACE_URL,
+    "DATABRICKS_TABLE_NAME": TABLE_NAME,
+}.items() if not v]
+if missing:
+    raise ValueError(f"Missing required .env variables: {', '.join(missing)}")
 # ──────────────────────────────────────────────────────────────────────────────
 
 HOSTNAME = socket.gethostname()
